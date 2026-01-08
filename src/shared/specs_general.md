@@ -110,7 +110,7 @@ $D = (Q≪20)−((Q≪20) \mod P)$
 
 ### 4.3. Masking and Keyed-Folding
 
-To prevent "Prime Recovery" or Greatest Common Divisor (GCD) attacks on intercepted tokens, the Verifiable ID ($D$) is obfuscated using a deterministic XOR mask.
+The Verifiable ID ($D$) is obfuscated using a deterministic XOR mask.
 
 The masked payload X is generated as:
 
@@ -120,6 +120,24 @@ The folding function, $fold{_L}$, derives a deterministic bitstream of length $L
 
 * **v2.x (Internal v2.3)**: Uses a payload length $L$ = 120 bits.
 * **v3.x (Temporal)**: Uses a payload length $L$ = 84 bits (accounting for the 32-bit timestamp and 4-bit version nibble).
+
+On v2 and onwards, the folding algorithm requires a key to prevent fixed outcomes, stopping GCD attacks.
+
+$X =D ⊕ kfold{_L}​(HMAC-SHA256(K,P))$
+
+Variable Definitions:
+
+X: The final masked Payload (120 bits for v2, 84 bits for v3).
+
+D: The Prime-Aligned Verifiable ID $(D≡0(modP))$.
+
+K: The 256-bit Master System Key (the "000102..." hex string).
+
+P: The 20-bit Issuer Prime (represented as a 3-byte input).
+
+HMAC-SHA256: The PRF (Pseudorandom Function) used to bind the prime to the key.
+
+$kfold{_L}$: The truncation function that selects the most significant L bits of the HMAC output to match the DEPID payload size.
 
 ### 4.4. Verification Complexity
 
