@@ -1,5 +1,7 @@
 # DEPID General Specifications
 
+Version: 0.1
+
 ## Abstract
 This repository defines DEPIDs (Detached Embedded-Proof IDentifiers), a 128 bit long decentral-oriented identifier intended to allow mathematically guaranteed instance-to-instance uniqueness while allowing source attribution without a central identifier registry.
 It utilizes prime-field divisibility to allow receivers to identify the origin (issuer) of a DEPID in O(1) time.
