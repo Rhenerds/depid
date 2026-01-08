@@ -154,3 +154,5 @@ The "Bucket Collision" Rule: Because multiple primes may map to the same 8-bit H
 ---
 
 For further detailed information regarding versions, please view the version-specified specifications.
+
+Copyright (c) Rhendra Networking 2026. All rights reserved.
